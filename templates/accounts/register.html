@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Register | UMS{% endblock %}
+{% block page_title %}Create Account{% endblock %}
+{% block page_subtitle %}Set up your profile and role{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card card-soft p-4">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          {{ form.username }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Role</label>
+          {{ form.role }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          {{ form.phone }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          {{ form.password1 }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Confirm Password</label>
+          {{ form.password2 }}
+        </div>
+        <button class="btn btn-primary">Create account</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

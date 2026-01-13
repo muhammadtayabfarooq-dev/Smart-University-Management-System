@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Offerings | UMS{% endblock %}
+{% block page_title %}Course Offerings{% endblock %}
+{% block page_subtitle %}Term-based course delivery{% endblock %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Term</th>
+        <th>Faculty</th>
+        <th>Capacity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for offering in offerings %}
+      <tr>
+        <td>{{ offering.course.code }} - {{ offering.course.title }}</td>
+        <td>{{ offering.term.name }}</td>
+        <td>{{ offering.faculty.user.get_full_name|default:offering.faculty.user.username }}</td>
+        <td>{{ offering.capacity }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-muted">No offerings scheduled.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

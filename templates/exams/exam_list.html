@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Exams | UMS{% endblock %}
+{% block page_title %}Exams{% endblock %}
+{% block page_subtitle %}Schedules and assessments{% endblock %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Exam</th>
+        <th>Date</th>
+        <th>Max Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for exam in exams %}
+      <tr>
+        <td>{{ exam.offering.course.code }} - {{ exam.offering.course.title }}</td>
+        <td>{{ exam.name }}</td>
+        <td>{{ exam.exam_date|date:"M d, Y" }}</td>
+        <td>{{ exam.max_score }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-muted">No exams scheduled.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

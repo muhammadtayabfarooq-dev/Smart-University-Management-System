@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Admissions | UMS{% endblock %}
+{% block page_title %}Admissions{% endblock %}
+{% block page_subtitle %}Track applicant status and pipeline{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h5 class="mb-0">Applications</h5>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'admissions:apply' %}">New Application</a>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Applicant</th>
+        <th>Email</th>
+        <th>Program</th>
+        <th>Status</th>
+        <th>Submitted</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for app in applications %}
+      <tr>
+        <td>{{ app.first_name }} {{ app.last_name }}</td>
+        <td>{{ app.email }}</td>
+        <td>{{ app.program }}</td>
+        <td><span class="badge bg-light text-dark">{{ app.get_status_display }}</span></td>
+        <td>{{ app.submitted_at|date:"M d, Y" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-muted">No applications found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

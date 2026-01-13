@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Courses | UMS{% endblock %}
+{% block page_title %}Courses{% endblock %}
+{% block page_subtitle %}Catalog of academic courses{% endblock %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.code }}</td>
+        <td>{{ course.title }}</td>
+        <td>{{ course.credits }}</td>
+        <td>{{ course.department }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-muted">No courses available.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
