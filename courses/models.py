@@ -49,3 +49,5 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f'{self.student.user.username} -> {self.offering}'
+
+# this is only a commit 
